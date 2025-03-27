@@ -133,6 +133,7 @@ while True:
     # ~~~~ END CODE INSERT ~~~~
     cacheFile.close()
     print ('Sent to the client:')
+    #I feel the following line should be changed to: print ('> ' + ''.join(cacheData)), otherwise TypeError
     print ('> ' + cacheData)
   except:
     # cache miss.  Get resource from origin server
