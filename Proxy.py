@@ -121,6 +121,8 @@ while True:
     # Check wether the file is currently in the cache
     cacheFile = open(cacheLocation, "r")
     cacheData = cacheFile.readlines()
+    #convert cacheData into string
+    cacheData = ''.join(cacheData)
 
     print ('Cache hit! Loading from cache file: ' + cacheLocation)
     # ProxyServer finds a cache hit
@@ -129,11 +131,11 @@ while True:
     #check fileExists?
     clientSocket.sendall("HTTP/1.0 200 OK\r\n".encode())
     clientSocket.sendall("Content-Type: text/html\r\n\r\n".encode())
-    clientSocket.sendall(''.join(cacheData).encode('utf-8'))
+    clientSocket.sendall(cacheData.encode('utf-8'))
     # ~~~~ END CODE INSERT ~~~~
     cacheFile.close()
     print ('Sent to the client:')
-    #I feel the following line should be changed to: print ('> ' + ''.join(cacheData)), otherwise TypeError
+    
     print ('> ' + cacheData)
   except:
     # cache miss.  Get resource from origin server
